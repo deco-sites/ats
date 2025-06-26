@@ -68,7 +68,7 @@ async function loader(
     const data = await response.json();
     
     // Return the message object from the API response
-    return data.message || null;
+    return data || null;
   } catch (error) {
     console.error("Error in RespostasAvaliacaoLoader:", error);
     return null;
