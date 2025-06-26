@@ -40,7 +40,8 @@
     "@deco/htmx": "https://cdn.jsdelivr.net/gh/deco-cx/apps@0.84.2/htmx/mod.ts",
     "https://esm.sh/*preact-render-to-string@6.3.1": "npm:preact-render-to-string@6.4.2",
     "@deco/deco": "jsr:@deco/deco@1.116.0",
-    "@deco/dev": "jsr:@deco/dev@1.116.0"
+    "@deco/dev": "jsr:@deco/dev@1.116.0",
+    "@deco/mcp": "jsr:@deco/mcp@0.5.6"
   },
   "tasks": {
     "start": "deno run -A --unstable-http --env https://deco.cx/run -- deno task dev",
