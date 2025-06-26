@@ -7,19 +7,38 @@ interface Props {
 }
 
 export interface RespostaAvaliacao {
-  id: string | number;
-  process_candidate_id: string | number;
-  pergunta_id?: string | number;
-  pergunta?: string;
-  resposta?: string;
-  nota?: number;
-  comentario?: string;
-  data_resposta?: string;
-  avaliador?: string;
+  id: number;
+  created_at: {
+    date: string;
+    timezone_type: number;
+    timezone: string;
+  };
+  candidate: {
+    id: number;
+    personal_data: Array<{
+      name: string;
+      email: string;
+      cpf: string;
+      [key: string]: unknown;
+    }>;
+    [key: string]: unknown;
+  };
+  status: {
+    id: number;
+    name: string;
+  };
+  selection_process_name: string;
+  selection_process_id: number;
+  modules: Array<{
+    title: string;
+    questions: Array<{
+      question: string;
+      answer: string;
+    }>;
+    note: string;
+  }>;
   [key: string]: unknown; // Allow for additional fields from API
 }
-
-export type RespostasAvaliacao = RespostaAvaliacao[];
 
 /**
  * @title Visualizar Resposta da Avaliação
@@ -28,7 +47,7 @@ export type RespostasAvaliacao = RespostaAvaliacao[];
 async function loader(
   props: Props,
   req: Request,
-): Promise<RespostasAvaliacao> {
+): Promise<RespostaAvaliacao | null> {
   try {
     const processCandidate = props.process_candidate || 30083;
     const url = `https://api2-sus.novo.org.br/api/v1/deco/respostas/${processCandidate}`;
@@ -43,16 +62,16 @@ async function loader(
 
     if (!response.ok) {
       console.error(`Error fetching evaluation responses: ${response.status}`);
-      return [];
+      return null;
     }
 
     const data = await response.json();
     
-    // Return the data array or transform it as needed
-    return Array.isArray(data) ? data : data.data || [];
+    // Return the message object from the API response
+    return data.message || null;
   } catch (error) {
     console.error("Error in RespostasAvaliacaoLoader:", error);
-    return [];
+    return null;
   }
 }
 
