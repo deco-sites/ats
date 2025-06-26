@@ -44,21 +44,28 @@ async function loader(
     const processId = props.process || 93;
     const url = `https://api2-sus.novo.org.br/api/v1/deco/processo-seletivo/${processId}`;
 
+    console.log("Fetching URL:", url);
+
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Cache-Control": "no-cache",
         // Add any required headers here (authentication, etc.)
       },
     });
 
+    console.log("Response status:", response.status);
+
     if (!response.ok) {
       console.error(`Error fetching process details: ${response.status}`);
+      const errorText = await response.text();
+      console.error("Error response:", errorText);
       return null;
     }
 
     const data = await response.json();
-    
+    console.log("API Response data:", data);
     // Return the data object
     return data;
   } catch (error) {

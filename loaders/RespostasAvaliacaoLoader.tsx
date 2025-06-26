@@ -52,21 +52,29 @@ async function loader(
     const processCandidate = props.process_candidate || 30083;
     const url = `https://api2-sus.novo.org.br/api/v1/deco/respostas/${processCandidate}`;
 
+    console.log("Fetching URL:", url);
+
     const response = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Cache-Control": "no-cache",
         // Add any required headers here (authentication, etc.)
       },
     });
 
+    console.log("Response status:", response.status);
+
     if (!response.ok) {
       console.error(`Error fetching evaluation responses: ${response.status}`);
+      const errorText = await response.text();
+      console.error("Error response:", errorText);
       return null;
     }
 
     const data = await response.json();
     
+    console.log(data);
     // Return the message object from the API response
     return data || null;
   } catch (error) {

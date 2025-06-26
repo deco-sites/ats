@@ -29,21 +29,30 @@ async function loader(
       url.searchParams.set("limit", props.limit.toString());
     }
 
+    console.log("Fetching URL:", url.toString());
+
     const response = await fetch(url.toString(), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Cache-Control": "no-cache",
         // Add any required headers here (authentication, etc.)
       },
     });
 
+    console.log("Response status:", response.status);
+    console.log("Response content-type:", response.headers.get("content-type"));
+
     if (!response.ok) {
       console.error(`Error fetching pending evaluations: ${response.status}`);
+      const errorText = await response.text();
+      console.error("Error response:", errorText);
       return [];
     }
 
     const data = await response.json();
-    
+    console.log("Full API Response:", data);
+    console.log("Evaluations array:", data.evaluations);
     // Return the evaluations array from the API response
     return data.evaluations || [];
   } catch (error) {
