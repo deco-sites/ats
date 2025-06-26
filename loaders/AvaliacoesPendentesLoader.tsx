@@ -6,14 +6,8 @@ interface Props {
 }
 
 export interface AvaliacaoPendente {
-  id: string | number;
-  processo_seletivo_id: string | number;
-  candidato_id: string | number;
-  nome_candidato?: string;
-  email_candidato?: string;
-  titulo_processo?: string;
-  data_criacao?: string;
-  status?: string;
+  process: number;
+  process_candidate: number;
   [key: string]: unknown; // Allow for additional fields from API
 }
 
@@ -50,8 +44,8 @@ async function loader(
 
     const data = await response.json();
     
-    // Return the data array or transform it as needed
-    return Array.isArray(data) ? data : data.data || [];
+    // Return the evaluations array from the API response
+    return data.evaluations || [];
   } catch (error) {
     console.error("Error in AvaliacoesPendentesLoader:", error);
     return [];
