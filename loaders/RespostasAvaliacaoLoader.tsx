@@ -25,7 +25,7 @@ export type RespostasAvaliacao = RespostaAvaliacao[];
  * @title Visualizar Resposta da Avaliação
  * @description Loader para buscar respostas de uma avaliação específica
  */
-export default async function loader(
+async function loader(
   props: Props,
   req: Request,
 ): Promise<RespostasAvaliacao> {
@@ -54,4 +54,6 @@ export default async function loader(
     console.error("Error in RespostasAvaliacaoLoader:", error);
     return [];
   }
-} 
+}
+
+export default loader; 

@@ -36,7 +36,7 @@ export interface ProcessoSeletivo {
  * @title Visualizar Detalhes do Processo Seletivo
  * @description Loader para buscar detalhes de um processo seletivo específico
  */
-export default async function loader(
+async function loader(
   props: Props,
   req: Request,
 ): Promise<ProcessoSeletivo | null> {
@@ -65,4 +65,6 @@ export default async function loader(
     console.error("Error in ProcessoSeletivoLoader:", error);
     return null;
   }
-} 
+}
+
+export default loader; 

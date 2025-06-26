@@ -5,9 +5,8 @@
 import * as $$$$$$$$$$$0 from "./apps/deco/htmx.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/AvaliacoesPendentesLoader.tsx";
-import * as $$$1 from "./loaders/ExampleLoader.tsx";
-import * as $$$2 from "./loaders/ProcessoSeletivoLoader.tsx";
-import * as $$$3 from "./loaders/RespostasAvaliacaoLoader.tsx";
+import * as $$$1 from "./loaders/ProcessoSeletivoLoader.tsx";
+import * as $$$2 from "./loaders/RespostasAvaliacaoLoader.tsx";
 import * as $$$$$$0 from "./sections/Footer.tsx";
 import * as $$$$$$1 from "./sections/ItWorks.tsx";
 import * as $$$$$$2 from "./sections/Theme/Theme.tsx";
@@ -15,9 +14,8 @@ import * as $$$$$$2 from "./sections/Theme/Theme.tsx";
 const manifest = {
   "loaders": {
     "site/loaders/AvaliacoesPendentesLoader.tsx": $$$0,
-    "site/loaders/ExampleLoader.tsx": $$$1,
-    "site/loaders/ProcessoSeletivoLoader.tsx": $$$2,
-    "site/loaders/RespostasAvaliacaoLoader.tsx": $$$3,
+    "site/loaders/ProcessoSeletivoLoader.tsx": $$$1,
+    "site/loaders/RespostasAvaliacaoLoader.tsx": $$$2,
   },
   "sections": {
     "site/sections/Footer.tsx": $$$$$$0,

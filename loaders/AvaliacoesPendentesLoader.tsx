@@ -23,7 +23,7 @@ export type AvaliacoesPendentes = AvaliacaoPendente[];
  * @title Listar Avaliações Pendentes
  * @description Loader para buscar avaliações pendentes do sistema ATS
  */
-export default async function loader(
+async function loader(
   props: Props,
   req: Request,
 ): Promise<AvaliacoesPendentes> {
@@ -56,4 +56,6 @@ export default async function loader(
     console.error("Error in AvaliacoesPendentesLoader:", error);
     return [];
   }
-} 
+}
+
+export default loader; 

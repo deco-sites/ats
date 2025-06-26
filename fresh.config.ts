@@ -7,8 +7,14 @@ export default defineConfig({
   plugins: plugins({
     manifest,
     htmx: true,
-    useServer: (deco: any, hono) => {
-      hono.use("/*", mcpServer(deco));
+    useServer: (deco, hono) => {
+      hono.use("/*", mcpServer(deco as any, {
+        include: [
+          "site/loaders/AvaliacoesPendentesLoader.tsx",
+          "site/loaders/RespostasAvaliacaoLoader.tsx",
+          "site/loaders/ProcessoSeletivoLoader.tsx"
+        ] as any
+      }));
     },
   }),
 });
